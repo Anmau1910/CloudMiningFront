@@ -9,11 +9,12 @@ phases:
     pre-build:
       - echo installing dependencies
       - npm install
+      - npm install -g @angular/cli
     build:
-      - PATH="$PWD/node_modules/.bin:$PATH" ng build --prod
+      - ng build --prod
 
 artifacts:
   files:
     - "**/*"
-  discard-paths: no
-  base-directory: dist/CloudMiningFront
+  discard-paths: yes
+  base-directory: "dist*"
