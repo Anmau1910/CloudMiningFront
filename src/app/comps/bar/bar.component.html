@@ -16,8 +16,8 @@
 
     </mat-card>
 </div>
-<div class="container" *ngIf="response != null | async" >
+<div class="container" *ngIf="response != null" >
     <mat-card color=primary class="example-card">
-        <img src="{{response.response | async}}" (load)="scroll()">
+        <img src="{{response.response}}" (load)="scroll()">
     </mat-card> 
 </div>
