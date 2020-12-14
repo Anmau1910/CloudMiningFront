@@ -12,14 +12,27 @@ import { FormControl } from '@angular/forms'
 })
 export class BarComponent implements OnInit {
   option = new FormControl();  
-  opts = ['mpg','cyl','disp','hp','drat','wt','qsec','vs','am','gear','carb' ];
+  opts = [];
   response: any;
   load = false;
+  error = false;
   
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    window.scroll(0,1000); 
+    this.http.get(`${environment.apiUrl}/datacols`).pipe(
+      retry(3),
+      catchError(err => {
+        console.error(`Error ${err.status} getting columns`);
+        this.error = true;
+        return of(null);
+      }))
+      .subscribe(res => {
+        if (res != null) {
+          this.opts = (res as any).response;
+          window.scroll(0,10000);
+        }
+      });
   }
 
   bar() {

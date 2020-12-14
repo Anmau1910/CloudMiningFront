@@ -14,22 +14,27 @@ import { FormControl } from '@angular/forms'
 
 export class ScatterComponent implements OnInit {
   option = new FormControl();  
-  opts = ['mpg','cyl','disp','hp','drat','wt','qsec','vs','am','gear','carb' ];
+  opts = [];
   response: any;
   load = false;
-  
-  // yopts = ['Mazda RX4', 'Mazda RX4 Wag', 'Datsun 710', 'Hornet 4 Drive','Hornet Sportabout', 'Valiant',
-  // 'Duster 360','Merc 240D', 'Merc 230', 'Merc 280', 'Merc 280C', 'Merc 450SE', 'Merc 450SL', 'Merc 450SLC', 'Cadillac Fleetwood',
-  // 'Lincoln Continental', 'Chrysler Imperial', 'Fiat 128', 'Honda Civic', 'Toyota Corolla', 'Toyota Corona', 'Dodge Challenger',
-  // 'AMC Javelin', 'Camaro Z28', 'Pontiac Firebird', 'Fiat X1-9', 'Porsche 914-2', 'Lotus Europa', 'Ford Pantera L', 'Ferrari Dino',
-  // 'Maserati Bora','Volvo 142E'];
-  
-  
+  error = false;
   constructor(private http: HttpClient) { }
 
 
   ngOnInit(): void {
-    window.scroll(0,1000);  
+    this.http.get(`${environment.apiUrl}/datacols`).pipe(
+      retry(3),
+      catchError(err => {
+        console.error(`Error ${err.status} getting columns`);
+        this.error = true;
+        return of(null);
+      }))
+      .subscribe(res => {
+        if (res != null) {
+          this.opts = (res as any).response;
+          window.scroll(0,10000);
+        }
+      });
   } 
 
   scatter() {

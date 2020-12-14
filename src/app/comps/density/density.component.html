@@ -3,24 +3,24 @@
 
         <ng-container *ngIf="load && !error">
             <mat-card-header>
-                <mat-card-title>We are building your Boxplot...</mat-card-title>
+                <mat-card-title>We are building your Densityplot...</mat-card-title>
             </mat-card-header>
-            <mat-progress-bar mode="query"></mat-progress-bar>
+            <mat-progress-bar mode="query" *ngIf="load"></mat-progress-bar>
         </ng-container>
-        
+
         <ng-container *ngIf="error">
             <mat-card-header>
-                <mat-card-title>Sorry! Boxplots are not available for your dataset :(</mat-card-title>
+                <mat-card-title>Sorry! Densityplots are not available for your dataset :(</mat-card-title>
             </mat-card-header>
             <mat-card-content>But try building another plot!</mat-card-content>
         </ng-container>
 
         <ng-container *ngIf="response != null">
             <mat-card-header>
-                <mat-card-title>Here's your Boxplot!</mat-card-title>
+                <mat-card-title>Here's your Densityplot!</mat-card-title>
             </mat-card-header>
             <img src="{{response.response}}" (load)="scroll()">
         </ng-container>
-        
+            
     </mat-card>
 </div>

@@ -24,6 +24,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { BoxComponent } from './comps/box/box.component';
 import { BarComponent } from './comps/bar/bar.component';
+import { DataloadComponent } from './comps/dataload/dataload.component';
+import { DensityComponent } from './comps/density/density.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { BarComponent } from './comps/bar/bar.component';
     DataVisualizationComponent,
     ScatterComponent,
     BoxComponent,
-    BarComponent
+    BarComponent,
+    DataloadComponent,
+    DensityComponent
   ],
   imports: [
     BrowserModule,

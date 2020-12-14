@@ -5,11 +5,11 @@ import { catchError, retry } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 @Component({
-  selector: 'app-box',
-  templateUrl: './box.component.html',
-  styleUrls: ['./box.component.css']
+  selector: 'app-density',
+  templateUrl: './density.component.html',
+  styleUrls: ['./density.component.css']
 })
-export class BoxComponent implements OnInit {
+export class DensityComponent implements OnInit {
   load = false;
   error = false;
   response: any;
@@ -20,11 +20,10 @@ export class BoxComponent implements OnInit {
     const params = new HttpParams();
 
     window.scroll(0,1000);
-    this.http.get(`${environment.apiUrl}/box`, { params }).pipe(
+    this.http.get(`${environment.apiUrl}/density`, { params }).pipe(
       retry(3),
       catchError(err => {
-        console.error(`Error ${err.status} getting boxplot`);
-        this.error = true;
+        console.error(`Error ${err.status} getting densityplot`);
         return of(null);
       }))
       .subscribe(res => {
