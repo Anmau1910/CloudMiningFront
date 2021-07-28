@@ -10,10 +10,10 @@ pipeline {
                 sh 'npm install'
             }
         }
-    }
-    stage('Build') {
-        steps {
-            sh 'npm build'
+       stage('Build') {
+            steps {
+                sh 'npm build'
+            }
         }
     }
 }
