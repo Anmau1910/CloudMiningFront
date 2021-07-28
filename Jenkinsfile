@@ -7,12 +7,12 @@ pipeline {
     stages {
         stage('Install') {
             steps {
-                sh 'npm install; npm install -g @angular/cli'
+                sh 'npm install; npm install @angular/cli'
             }
         }
        stage('Build') {
             steps {
-                sh 'ng build --prod'
+                sh 'ls -la node_modules; ./node_modules/.bin/ng build --prod'
             }
         }
     }
