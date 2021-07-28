@@ -12,7 +12,7 @@ pipeline {
         }
        stage('Build') {
             steps {
-                sh 'ls -la node_modules; ./node_modules/.bin/ng build --prod'
+                sh './node_modules/.bin/ng build --prod'
             }
         }
     }
